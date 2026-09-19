@@ -107,8 +107,9 @@ def analysis_page():
     )
 
 
+
 @app.get("/login.html")
-def chat_page():
+def login_page():
 
     return FileResponse(
         os.path.join(
@@ -117,6 +118,16 @@ def chat_page():
         )
     )
 
+
+@app.get("/chat.html")
+def chat_page():
+
+    return FileResponse(
+        os.path.join(
+            FRONTEND_DIR,
+            "chat.html"
+        )
+    )
 
 # ============================================================
 # HEALTH CHECK
