@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EcoMind | The Earth Is Telling Us Something</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #b5f5a7;
+            --mint: #d9ffe0;
+            --white: #f4f8f3;
+            --muted: #b4c4b9;
+            --panel: rgba(11, 26, 20, 0.76);
+            --border: rgba(207, 244, 213, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #07130e;
+            color: var(--white);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* BACKGROUND */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(4, 16, 11, 0.97) 0%,
+                    rgba(4, 16, 11, 0.87) 42%,
+                    rgba(4, 16, 11, 0.40) 100%
+                ),
+                linear-gradient(
+                    0deg,
+                    #07130e 0%,
+                    transparent 45%,
+                    rgba(3, 14, 9, 0.35) 100%
+                ),
+                url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2200&q=90");
+
+            background-size: cover;
+            background-position: center;
+            transform: scale(1.04);
+            animation: backgroundReveal 2s ease forwards;
+        }
+
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at 72% 45%,
+                    rgba(99, 201, 122, 0.13),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 10% 85%,
+                    rgba(40, 118, 75, 0.12),
+                    transparent 35%
+                );
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            width: 100%;
+            min-height: 88px;
+            padding: 22px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(5, 17, 11, 0.28);
+            backdrop-filter: blur(14px);
+
+            animation: fadeDown 1s ease both;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Manrope", sans-serif;
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+
+            background: rgba(181, 245, 167, 0.12);
+            border: 1px solid rgba(181, 245, 167, 0.27);
+
+            font-size: 24px;
+            box-shadow: 0 0 25px rgba(181, 245, 167, 0.08);
+        }
+
+        .brand span {
+            color: var(--green);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            color: #d0ddd2;
+            font-size: 13px;
+        }
+
+        .nav-links a {
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        .nav-cta {
+            border: 1px solid rgba(181, 245, 167, 0.42);
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: var(--green);
+            transition: 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--green);
+            color: #102015;
+            box-shadow: 0 0 24px rgba(181, 245, 167, 0.18);
+        }
+
+        /* HERO */
+
+        .hero {
+            width: 100%;
+            min-height: calc(100vh - 88px);
+            padding: 70px 7% 65px;
+
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .hero-content {
+            max-width: 680px;
+            animation: fadeUp 1s 0.15s ease both;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 10px;
+            font-weight: 700;
+
+            margin-bottom: 27px;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 12px var(--green);
+            animation: pulse 2s infinite;
+        }
+
+        h1 {
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(43px, 5.5vw, 76px);
+            line-height: 1.08;
+            letter-spacing: -4px;
+            font-weight: 700;
+            max-width: 700px;
+        }
+
+        h1 .highlight {
+            color: var(--green);
+            display: block;
+            text-shadow: 0 0 35px rgba(181, 245, 167, 0.10);
+        }
+
+        .hero-description {
+            color: #c1d0c5;
+            font-size: 15px;
+            line-height: 1.9;
+            max-width: 510px;
+            margin-top: 25px;
+        }
+
+        .hero-description strong {
+            color: #f1fff2;
+            font-weight: 600;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .btn {
+            min-height: 51px;
+            padding: 0 23px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: #102015;
+            border: 1px solid var(--green);
+            box-shadow: 0 7px 28px rgba(117, 211, 111, 0.12);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(117, 211, 111, 0.25);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.035);
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.19);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--green);
+            color: var(--green);
+            transform: translateY(-3px);
+        }
+
+        .hero-note {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 38px;
+            color: #93a99a;
+            font-size: 11px;
+            letter-spacing: 0.2px;
+        }
+
+        .note-line {
+            width: 34px;
+            height: 1px;
+            background: var(--green);
+            opacity: 0.6;
+        }
+
+        /* DIGITAL EARTH */
+
+        .visual {
+            min-height: 510px;
+            position: relative;
+            display: grid;
+            place-items: center;
+            animation: fadeIn 1.5s 0.3s ease both;
+        }
+
+        .earth-wrap {
+            width: min(390px, 34vw);
+            aspect-ratio: 1;
+            position: relative;
+            display: grid;
+            place-items: center;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        .earth-glow {
+            position: absolute;
+            inset: 7%;
+            border-radius: 50%;
+            background: rgba(90, 226, 131, 0.14);
+            filter: blur(48px);
+            animation: glow 5s ease-in-out infinite alternate;
+        }
+
+        .earth {
+            position: absolute;
+            inset: 8%;
+            overflow: hidden;
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at 35% 30%,
+                    rgba(111, 217, 151, 0.15),
+                    transparent 38%
+                ),
+                url("https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1000&q=90");
+
+            background-size: cover;
+            background-position: center;
+
+            box-shadow:
+                inset -35px -10px 65px rgba(0,0,0,0.85),
+                inset 8px 5px 35px rgba(164,255,188,0.16),
+                0 0 35px rgba(84, 218, 129, 0.17),
+                0 0 100px rgba(84, 218, 129, 0.08);
+        }
+
+        .earth::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent 25%,
+                    rgba(8, 31, 19, 0.15) 48%,
+                    rgba(1, 8, 5, 0.65) 100%
+                ),
+                radial-gradient(
+                    circle,
+                    transparent 45%,
+                    rgba(0,0,0,0.55) 100%
+                );
+        }
+
+        .earth::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px solid rgba(172, 255, 192, 0.2);
+            box-shadow: inset 0 0 30px rgba(105, 255, 149, 0.12);
+        }
+
+        .orbit {
+            position: absolute;
+            inset: -4%;
+            border: 1px solid rgba(181, 245, 167, 0.18);
+            border-radius: 50%;
+            transform: rotate(-24deg) scaleY(0.40);
+        }
+
+        .orbit.two {
+            inset: -13%;
+            transform: rotate(48deg) scaleY(0.56);
+            border-color: rgba(181, 245, 167, 0.12);
+        }
+
+        .orbit.three {
+            inset: -19%;
+            transform: rotate(-62deg) scaleY(0.72);
+            border-color: rgba(181, 245, 167, 0.08);
+        }
+
+        .orbit-dot {
+            position: absolute;
+            top: 50%;
+            left: -5px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 16px var(--green);
+        }
+
+        .scan-line {
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            top: 15%;
+            z-index: 2;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(181, 245, 167, 0.75),
+                transparent
+            );
+
+            box-shadow: 0 0 12px rgba(181, 245, 167, 0.6);
+            animation: scan 5s ease-in-out infinite;
+        }
+
+        /* ECOSYSTEM NODES */
+
+        .node {
+            position: absolute;
+            z-index: 4;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 11px 15px;
+            border: 1px solid rgba(181, 245, 167, 0.2);
+            background: rgba(8, 24, 16, 0.79);
+            backdrop-filter: blur(12px);
+            border-radius: 9px;
+
+            box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+            animation: nodeFloat 5s ease-in-out infinite;
+        }
+
+        .node-icon {
+            width: 31px;
+            height: 31px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            background: rgba(181, 245, 167, 0.11);
+            font-size: 16px;
+        }
+
+        .node-label {
+            color: #91a89a;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .node-value {
+            color: #ecffed;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 3px;
+        }
+
+        .node.soil {
+            top: 14%;
+            left: -1%;
+        }
+
+        .node.biodiversity {
+            top: 31%;
+            right: -8%;
+            animation-delay: -1.5s;
+        }
+
+        .node.climate {
+            bottom: 19%;
+            left: -6%;
+            animation-delay: -2.5s;
+        }
+
+        .node.water {
+            bottom: 10%;
+            right: 2%;
+            animation-delay: -3.5s;
+        }
+
+        /* SMALL SIGNALS */
+
+        .signal {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 13px var(--green);
+            opacity: 0.7;
+        }
+
+        .signal.s1 {
+            top: 20%;
+            right: 20%;
+            animation: pulse 2s infinite;
+        }
+
+        .signal.s2 {
+            top: 64%;
+            left: 13%;
+            animation: pulse 3s 0.4s infinite;
+        }
+
+        .signal.s3 {
+            bottom: 24%;
+            right: 22%;
+            animation: pulse 2.5s 0.8s infinite;
+        }
+
+        /* BOTTOM INFO */
+
+        .bottom-section {
+            padding: 0 7% 35px;
+            animation: fadeUp 1.2s 0.6s ease both;
+        }
+
+        .bottom-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+
+            border-top: 1px solid rgba(255,255,255,0.11);
+            padding-top: 24px;
+        }
+
+        .bottom-label {
+            font-size: 10px;
+            color: #7f9987;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .bottom-title {
+            margin-top: 7px;
+            font-family: "Manrope", sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #d7e6da;
+        }
+
+        .metrics {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .metric {
+            border-left: 1px solid rgba(181, 245, 167, 0.2);
+            padding-left: 17px;
+        }
+
+        .metric-number {
+            font-family: "Manrope", sans-serif;
+            color: var(--green);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .metric-text {
+            color: #8da394;
+            font-size: 10px;
+            margin-top: 4px;
+        }
+
+        .disclaimer {
+            margin-top: 17px;
+            text-align: right;
+            font-size: 9px;
+            color: #647a6a;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes backgroundReveal {
+            from { transform: scale(1.1); }
+            to { transform: scale(1.04); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-13px); }
+        }
+
+        @keyframes nodeFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes glow {
+            from { opacity: 0.55; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1.08); }
+        }
+
+        @keyframes scan {
+            0% { top: 15%; opacity: 0; }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { top: 85%; opacity: 0; }
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1050px) {
+            .hero {
+                grid-template-columns: 1fr 0.85fr;
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .visual {
+                min-height: 430px;
+            }
+
+            .node {
+                transform: scale(0.88);
+            }
+
+            .node.biodiversity {
+                right: -5%;
+            }
+
+            .bottom-section {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+        }
+
+        @media (max-width: 760px) {
+            nav {
+                min-height: 75px;
+                padding: 16px 5%;
+            }
+
+            .brand {
+                font-size: 21px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links > a:not(.nav-cta) {
+                display: none;
+            }
+
+            .nav-cta {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 65px 6% 35px;
+                gap: 0;
+            }
+
+            .hero-content {
+                max-width: 600px;
+            }
+
+            h1 {
+                font-size: clamp(43px, 10vw, 67px);
+                letter-spacing: -2.5px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .visual {
+                min-height: 420px;
+                margin-top: 20px;
+            }
+
+            .earth-wrap {
+                width: min(320px, 72vw);
+            }
+
+            .node {
+                padding: 9px 11px;
+                gap: 7px;
+            }
+
+            .node-icon {
+                width: 27px;
+                height: 27px;
+                font-size: 14px;
+            }
+
+            .node-label {
+                font-size: 8px;
+            }
+
+            .node-value {
+                font-size: 10px;
+            }
+
+            .node.soil {
+                left: 0;
+            }
+
+            .node.biodiversity {
+                right: -2%;
+            }
+
+            .node.climate {
+                left: -1%;
+            }
+
+            .node.water {
+                right: 0;
+            }
+
+            .bottom-bar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .metrics {
+                width: 100%;
+                justify-content: space-between;
+                gap: 12px;
+            }
+
+            .metric {
+                padding-left: 10px;
+            }
+
+            .metric-number {
+                font-size: 16px;
+            }
+
+            .metric-text {
+                font-size: 9px;
+            }
+
+            .disclaimer {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .visual {
+                min-height: 350px;
+            }
+
+            .node {
+                transform: scale(0.78);
+            }
+
+            .node.soil {
+                transform-origin: left top;
+            }
+
+            .node.biodiversity {
+                transform-origin: right top;
+            }
+
+            .node.climate {
+                transform-origin: left bottom;
+            }
+
+            .node.water {
+                transform-origin: right bottom;
+            }
+
+            .metrics {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background"></div>
+    <div class="ambient"></div>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="/" class="brand">
+            <div class="brand-icon">🌿</div>
+            Eco<span>Mind</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#Home">Home</a>
+            <a href="analysis.html">Analysis</a>
+            <a href="chat.html">AI Chat</a>
+
+            <a href="login.html" class="nav-cta">
+                Get Started ↗
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <main class="hero" id="mission">
+
+        <section class="hero-content">
+
+            <div class="eyebrow">
+                <span class="live-dot"></span>
+                AI-powered Earth intelligence
+            </div>
+
+            <h1>
+                The Earth is
+                <span class="highlight">telling us</span>
+                something.
+            </h1>
+
+            <p class="hero-description">
+                Every shift in the soil. Every change in a species.
+                Every signal in the ecosystem.
+                <strong>Nature is speaking.</strong>
+                EcoMind helps us understand — transforming environmental
+                data into meaningful intelligence for a living planet.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="analysis.html" class="btn btn-primary">
+                    Explore Earth Intelligence
+                    <span>↗</span>
+                </a>
+
+                <a href="chat.html" class="btn btn-secondary">
+                    Talk to EcoMind
+                    <span>→</span>
+                </a>
+
+            </div>
+
+            <div class="hero-note">
+                <span class="note-line"></span>
+                Listen to nature. Decode its signals. Protect its future.
+            </div>
+
+        </section>
+
+        <!-- ANIMATED EARTH VISUAL -->
+        <section class="visual" aria-label="Animated digital Earth visualization">
+
+            <div class="earth-wrap">
+
+                <div class="earth-glow"></div>
+
+                <div class="orbit">
+                    <span class="orbit-dot"></span>
+                </div>
+
+                <div class="orbit two">
+                    <span class="orbit-dot"></span>
+                </div>
+
+                <div class="orbit three">
+                    <span class="orbit-dot"></span>
+                </div>
+
+                <div class="earth">
+                    <div class="scan-line"></div>
+                </div>
+
+                <span class="signal s1"></span>
+                <span class="signal s2"></span>
+                <span class="signal s3"></span>
+
+            </div>
+
+            <!-- Ecosystem data nodes -->
+
+            <div class="node soil">
+                <div class="node-icon">🌱</div>
+                <div>
+                    <div class="node-label">Soil Health</div>
+                    <div class="node-value">Living Foundations</div>
+                </div>
+            </div>
+
+            <div class="node biodiversity">
+                <div class="node-icon">🦋</div>
+                <div>
+                    <div class="node-label">Biodiversity</div>
+                    <div class="node-value">Life in Balance</div>
+                </div>
+            </div>
+
+            <div class="node climate">
+                <div class="node-icon">☀️</div>
+                <div>
+                    <div class="node-label">Climate</div>
+                    <div class="node-value">Changing Signals</div>
+                </div>
+            </div>
+
+            <div class="node water">
+                <div class="node-icon">💧</div>
+                <div>
+                    <div class="node-label">Water Systems</div>
+                    <div class="node-value">The Flow of Life</div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- BOTTOM INFORMATION BAR -->
+    <section class="bottom-section">
+
+        <div class="bottom-bar">
+
+            <div>
+                <div class="bottom-label">One living planet</div>
+                <div class="bottom-title">
+                    Everything is connected. Every signal matters.
+                </div>
+            </div>
+
+            <div class="metrics">
+
+                <div class="metric">
+                    <div class="metric-number">Soil</div>
+                    <div class="metric-text">Health Signals</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-number">Species</div>
+                    <div class="metric-text">Biodiversity</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-number">Climate</div>
+                    <div class="metric-text">Environmental Change</div>
+                </div>
+
+                <div class="metric">
+                    <div class="metric-number">AI + RAG</div>
+                    <div class="metric-text">Grounded Insights</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="disclaimer">
+            EcoMind is a biodiversity intelligence prototype.
+            Insights depend on the available environmental data and knowledge base.
+        </div>
+
+    </section>
+
+</body>
+</html>

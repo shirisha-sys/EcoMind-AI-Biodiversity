@@ -1,0 +1,295 @@
+[
+    {
+        "id": "soil_001",
+        "topic": "soil organic carbon",
+        "keywords": [
+            "organic carbon",
+            "soil carbon",
+            "soil health",
+            "soil biodiversity",
+            "organic matter"
+        ],
+        "condition": "low organic carbon",
+        "evidence": "Soil organic matter contributes to soil structure, water holding capacity, nutrient availability and biological activity. Soil organisms are important for nutrient cycling and ecosystem functions.",
+        "recommendation": "Increase organic matter inputs using suitable practices such as crop residues, compost, cover crops or other locally appropriate organic amendments.",
+        "affected_metrics": [
+            "Soil organic carbon",
+            "Soil health",
+            "Soil biological activity",
+            "Water holding capacity"
+        ],
+        "reasoning": "Increasing organic matter can support soil biological activity and improve physical and biological soil functions.",
+        "source": "FAO - The Importance of Soil Organic Matter",
+        "source_url": "https://www.fao.org/4/a0100e/a0100e02.htm"
+    },
+
+    {
+        "id": "soil_002",
+        "topic": "soil biodiversity",
+        "keywords": [
+            "soil biodiversity",
+            "soil organisms",
+            "microorganisms",
+            "soil microbes",
+            "biodiversity"
+        ],
+        "condition": "soil biodiversity concern",
+        "evidence": "Soil biodiversity includes organisms ranging from microorganisms to larger soil fauna. These organisms contribute to nutrient cycling, plant growth and multiple ecosystem services.",
+        "recommendation": "Use soil-management practices that maintain organic matter, reduce unnecessary disturbance and protect soil habitat conditions.",
+        "affected_metrics": [
+            "Soil biodiversity",
+            "Soil biological activity",
+            "Nutrient cycling",
+            "Soil health"
+        ],
+        "reasoning": "Maintaining suitable soil habitat and organic matter can support diverse soil communities and associated ecosystem functions.",
+        "source": "FAO - The State of Knowledge of Soil Biodiversity",
+        "source_url": "https://www.fao.org/interactive/soil-biodiversity/en/"
+    },
+
+    {
+        "id": "soil_003",
+        "topic": "soil moisture",
+        "keywords": [
+            "soil moisture",
+            "water availability",
+            "water stress",
+            "moisture retention",
+            "drought"
+        ],
+        "condition": "low soil moisture",
+        "evidence": "Soil organic matter influences soil water holding capacity, while vegetation and soil management can influence infiltration, runoff and moisture retention.",
+        "recommendation": "Maintain protective vegetation or crop cover and use locally suitable soil-management practices that improve moisture retention.",
+        "affected_metrics": [
+            "Soil moisture",
+            "Water availability",
+            "Vegetation health",
+            "Soil health"
+        ],
+        "reasoning": "Improved soil structure and protective cover can help retain moisture and reduce environmental stress on vegetation.",
+        "source": "FAO - The Importance of Soil Organic Matter",
+        "source_url": "https://www.fao.org/4/a0100e/a0100e02.htm"
+    },
+
+    {
+        "id": "biodiversity_001",
+        "topic": "agricultural intensification",
+        "keywords": [
+            "monoculture",
+            "agriculture",
+            "agricultural intensification",
+            "habitat diversity",
+            "pollinators",
+            "intercropping"
+        ],
+        "condition": "monoculture",
+        "evidence": "FAO identifies agricultural intensification as a threat to soil biodiversity and notes that sustainable soil management can help protect soil biodiversity.",
+        "recommendation": "Introduce suitable habitat-diversifying measures such as native flowering strips, hedgerows, crop diversification or appropriate intercropping.",
+        "affected_metrics": [
+            "Habitat diversity",
+            "Biodiversity",
+            "Pollinator resources",
+            "Ecological connectivity"
+        ],
+        "reasoning": "Increasing vegetation and habitat diversity can provide additional resources and ecological niches while reducing dependence on a single land-cover type.",
+        "source": "FAO - The State of Knowledge of Soil Biodiversity",
+        "source_url": "https://www.fao.org/interactive/soil-biodiversity/en/"
+    },
+
+    {
+        "id": "biodiversity_002",
+        "topic": "habitat diversity",
+        "keywords": [
+            "habitat diversity",
+            "species richness",
+            "biodiversity",
+            "habitat",
+            "native vegetation",
+            "ecological connectivity"
+        ],
+        "condition": "low habitat diversity",
+        "evidence": "Habitat structure and vegetation diversity influence the resources and ecological conditions available to organisms.",
+        "recommendation": "Maintain or establish diverse native vegetation structures appropriate to the local ecosystem.",
+        "affected_metrics": [
+            "Habitat diversity",
+            "Species richness",
+            "Biodiversity",
+            "Ecological connectivity"
+        ],
+        "reasoning": "Different vegetation structures can provide different food, shelter and breeding resources for organisms.",
+        "source": "IPCC AR6 WGII - Terrestrial and Freshwater Ecosystems",
+        "source_url": "https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-2/"
+    },
+
+    {
+        "id": "climate_001",
+        "topic": "temperature stress",
+        "keywords": [
+            "temperature",
+            "heat",
+            "climate",
+            "heat stress",
+            "species survival"
+        ],
+        "condition": "high temperature",
+        "evidence": "Climate change can affect species ranges, phenology, physiology and other ecological characteristics. Extreme events can increase risks to terrestrial and freshwater ecosystems.",
+        "recommendation": "Maintain native vegetation and habitat structures that can provide local microclimatic variation and ecological refuges where appropriate.",
+        "affected_metrics": [
+            "Temperature stress",
+            "Habitat quality",
+            "Species survival",
+            "Biodiversity"
+        ],
+        "reasoning": "Vegetation and habitat structure can modify local environmental conditions and provide resources for organisms experiencing climatic stress.",
+        "source": "IPCC AR6 WGII - Terrestrial and Freshwater Ecosystems",
+        "source_url": "https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-2/"
+    },
+
+    {
+        "id": "water_001",
+        "topic": "water and biodiversity",
+        "keywords": [
+            "water",
+            "rainfall",
+            "freshwater",
+            "water availability",
+            "biodiversity",
+            "drought"
+        ],
+        "condition": "water limitation",
+        "evidence": "Water availability and climate-related changes in precipitation and temperature can affect freshwater ecosystems and biodiversity.",
+        "recommendation": "Protect and restore suitable vegetation and water-retention features appropriate to the local ecosystem while avoiding unnecessary disturbance of natural water systems.",
+        "affected_metrics": [
+            "Water availability",
+            "Freshwater biodiversity",
+            "Species survival",
+            "Ecosystem condition"
+        ],
+        "reasoning": "Water availability is an important ecological constraint, and changes in temperature and precipitation can alter freshwater biodiversity and ecosystem functioning.",
+        "source": "IPCC AR6 WGII - Water",
+        "source_url": "https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-4/"
+    },
+
+    {
+        "id": "land_001",
+        "topic": "urbanization",
+        "keywords": [
+            "urban",
+            "urbanization",
+            "fragmentation",
+            "habitat loss",
+            "soil biodiversity"
+        ],
+        "condition": "urban area",
+        "evidence": "FAO identifies urbanization as a pressure that can reduce habitat for soil organisms and alter soil communities and food-web dynamics.",
+        "recommendation": "Protect remaining vegetated areas and create connected native-vegetation patches where feasible.",
+        "affected_metrics": [
+            "Habitat availability",
+            "Habitat connectivity",
+            "Soil biodiversity",
+            "Ecological condition"
+        ],
+        "reasoning": "Maintaining connected vegetated habitat can help reduce isolation of ecological resources within developed landscapes.",
+        "source": "FAO - The State of Knowledge of Soil Biodiversity",
+        "source_url": "https://www.fao.org/interactive/soil-biodiversity/en/"
+    },
+
+    {
+        "id": "land_002",
+        "topic": "forest habitat",
+        "keywords": [
+            "forest",
+            "forest habitat",
+            "native vegetation",
+            "biodiversity",
+            "ecosystem"
+        ],
+        "condition": "forest",
+        "evidence": "Vegetated ecosystems provide habitat and contribute to ecosystem functions including water infiltration and ecological services.",
+        "recommendation": "Maintain native vegetation structure and avoid unnecessary fragmentation of intact habitat.",
+        "affected_metrics": [
+            "Habitat quality",
+            "Biodiversity",
+            "Water regulation",
+            "Ecological connectivity"
+        ],
+        "reasoning": "Maintaining intact and structurally diverse habitat can support ecological functions and organisms associated with forest ecosystems.",
+        "source": "IPCC AR6 WGII - Terrestrial and Freshwater Ecosystems",
+        "source_url": "https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-2/"
+    },
+
+    {
+        "id": "land_003",
+        "topic": "wetland habitat",
+        "keywords": [
+            "wetland",
+            "freshwater",
+            "aquatic biodiversity",
+            "water",
+            "habitat"
+        ],
+        "condition": "wetland",
+        "evidence": "Freshwater ecosystems support biodiversity and ecosystem services and can be affected by changes in water quantity, quality and climate.",
+        "recommendation": "Protect natural wetland vegetation and maintain ecological water conditions while reducing avoidable disturbance and pollution.",
+        "affected_metrics": [
+            "Freshwater biodiversity",
+            "Water quality",
+            "Habitat quality",
+            "Species survival"
+        ],
+        "reasoning": "Maintaining appropriate water and habitat conditions supports organisms dependent on freshwater ecosystems.",
+        "source": "IPCC AR6 WGII - Water",
+        "source_url": "https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-4/"
+    },
+
+    {
+        "id": "land_004",
+        "topic": "grassland",
+        "keywords": [
+            "grassland",
+            "native grasses",
+            "habitat",
+            "pollinators",
+            "biodiversity"
+        ],
+        "condition": "grassland",
+        "evidence": "Grassland vegetation can provide habitat and resources for organisms when ecological structure and vegetation diversity are maintained.",
+        "recommendation": "Maintain native vegetation diversity and protect habitat structure while avoiding unnecessary conversion of grassland.",
+        "affected_metrics": [
+            "Habitat diversity",
+            "Biodiversity",
+            "Pollinator resources",
+            "Vegetation health"
+        ],
+        "reasoning": "Maintaining diverse vegetation structure can support multiple ecological niches and resources.",
+        "source": "IPCC AR6 WGII - Terrestrial and Freshwater Ecosystems",
+        "source_url": "https://www.ipcc.ch/report/ar6/wg2/chapter/chapter-2/"
+    },
+
+    {
+        "id": "combined_001",
+        "topic": "soil water biodiversity relationship",
+        "keywords": [
+            "soil",
+            "water",
+            "biodiversity",
+            "organic carbon",
+            "moisture",
+            "ecosystem"
+        ],
+        "condition": "multiple environmental stressors",
+        "evidence": "Soil organic matter, soil biological activity and water availability interact with ecological processes. Soil organisms contribute to nutrient cycling and soil functions, while water availability constrains vegetation and ecosystem processes.",
+        "recommendation": "Use an integrated management approach that combines soil organic matter improvement, protective vegetation cover and habitat diversification.",
+        "affected_metrics": [
+            "Soil organic carbon",
+            "Soil moisture",
+            "Soil biodiversity",
+            "Habitat diversity",
+            "Water availability",
+            "Overall biodiversity"
+        ],
+        "reasoning": "Managing multiple interacting environmental variables can address both belowground soil processes and aboveground habitat conditions.",
+        "source": "FAO Soil Biodiversity and Soil Organic Matter Resources",
+        "source_url": "https://www.fao.org/interactive/soil-biodiversity/en/"
+    }
+]

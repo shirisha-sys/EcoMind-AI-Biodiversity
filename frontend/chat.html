@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EcoMind | Biodiversity Intelligence</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#06130f;
+    color:#ecfff4;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* MAIN APP */
+
+.app{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* HEADER */
+
+.header{
+    height:70px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 28px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    background:rgba(5,20,15,.95);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:22px;
+    font-weight:700;
+}
+
+.logo-icon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#7dff7d,#166b3d);
+    font-size:22px;
+}
+
+.status{
+    color:#8dffb0;
+    font-size:13px;
+}
+
+.status span{
+    display:inline-block;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#72ff98;
+    margin-right:7px;
+}
+
+/* CHAT AREA */
+
+.chat-wrapper{
+    flex:1;
+    min-height:0;
+    display:flex;
+    justify-content:center;
+}
+
+.chat{
+    width:min(1000px,100%);
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+}
+
+/* TITLE */
+
+.chat-title{
+    flex-shrink:0;
+    padding:28px 25px 18px;
+}
+
+.chat-title h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.chat-title p{
+    color:#a9bdb3;
+    line-height:1.5;
+}
+
+/* MESSAGES */
+
+.messages{
+    flex:1;
+    min-height:0;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding:10px 25px 20px;
+    scroll-behavior:smooth;
+}
+
+/* scrollbar */
+
+.messages::-webkit-scrollbar{
+    width:7px;
+}
+
+.messages::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.messages::-webkit-scrollbar-thumb{
+    background:#234c3a;
+    border-radius:10px;
+}
+
+/* MESSAGE */
+
+.message{
+    display:flex;
+    gap:12px;
+    margin-bottom:22px;
+    animation:fadeIn .3s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.message.user{
+    justify-content:flex-end;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+    min-width:38px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#173c2c;
+}
+
+.message.user .avatar{
+    order:2;
+    background:#256a43;
+}
+
+.bubble{
+    max-width:760px;
+    padding:17px 19px;
+    border-radius:18px;
+    line-height:1.65;
+    font-size:15px;
+}
+
+.message.ai .bubble{
+    background:rgba(20,49,37,.82);
+    border:1px solid rgba(126,255,166,.09);
+}
+
+.message.user .bubble{
+    background:linear-gradient(135deg,#287c4d,#17633b);
+    border-radius:18px 18px 5px 18px;
+}
+
+/* ANALYSIS CARD */
+
+.analysis-card{
+    margin-top:14px;
+    padding:18px;
+    border-radius:15px;
+    background:rgba(5,20,14,.65);
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.analysis-title{
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:15px;
+    color:#dffff0;
+}
+
+.analysis-row{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:11px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.analysis-row:last-child{
+    border-bottom:none;
+}
+
+.analysis-label{
+    color:#a7bbb0;
+}
+
+.analysis-value{
+    font-weight:600;
+    text-align:right;
+}
+
+.section-title{
+    margin-top:18px;
+    margin-bottom:8px;
+    font-size:14px;
+    color:#8dffb0;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+}
+
+.recommendation{
+    padding:14px;
+    border-left:3px solid #78ff9f;
+    background:rgba(120,255,159,.06);
+    border-radius:7px;
+    line-height:1.6;
+}
+
+.metric{
+    display:inline-block;
+    padding:6px 9px;
+    margin:4px 4px 0 0;
+    border-radius:20px;
+    background:#173d2c;
+    color:#bfffd3;
+    font-size:12px;
+}
+
+.source{
+    color:#9eafa7;
+    font-size:13px;
+    margin-top:10px;
+}
+
+/* TYPING */
+
+.typing{
+    display:none;
+    align-items:center;
+    gap:10px;
+    margin:0 25px 10px;
+    color:#9bb3a5;
+    font-size:13px;
+    flex-shrink:0;
+}
+
+.typing.show{
+    display:flex;
+}
+
+.dots span{
+    display:inline-block;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#79ff9d;
+    margin-right:3px;
+    animation:bounce 1.2s infinite;
+}
+
+.dots span:nth-child(2){
+    animation-delay:.2s;
+}
+
+.dots span:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes bounce{
+    0%,60%,100%{
+        transform:translateY(0);
+    }
+    30%{
+        transform:translateY(-5px);
+    }
+}
+
+/* QUICK PROMPTS */
+
+.quick{
+    flex-shrink:0;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:8px 25px 10px;
+}
+
+.quick::-webkit-scrollbar{
+    display:none;
+}
+
+.quick button{
+    white-space:nowrap;
+    border:1px solid rgba(125,255,157,.12);
+    background:#10271d;
+    color:#c8dfd2;
+    padding:9px 13px;
+    border-radius:20px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.quick button:hover{
+    background:#19402d;
+}
+
+/* INPUT AREA */
+
+.input-area{
+    flex-shrink:0;
+    padding:12px 25px 20px;
+    background:linear-gradient(
+        to bottom,
+        rgba(6,19,15,.2),
+        #06130f 25%
+    );
+}
+
+.input-box{
+    display:flex;
+    align-items:flex-end;
+    gap:10px;
+    padding:10px;
+    border-radius:17px;
+    background:#10251c;
+    border:1px solid rgba(125,255,157,.12);
+    box-shadow:0 8px 30px rgba(0,0,0,.25);
+}
+
+textarea{
+    flex:1;
+    resize:none;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:#effff5;
+    font-family:inherit;
+    font-size:15px;
+    line-height:1.5;
+    min-height:25px;
+    max-height:120px;
+    padding:8px;
+}
+
+textarea::placeholder{
+    color:#71897c;
+}
+
+.send{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:13px;
+    background:linear-gradient(135deg,#72ff98,#24944e);
+    color:#06130f;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.send:hover{
+    transform:scale(1.04);
+}
+
+.send:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.hint{
+    text-align:center;
+    color:#61786b;
+    font-size:11px;
+    margin-top:7px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .header{
+        height:60px;
+        padding:0 15px;
+    }
+
+    .logo{
+        font-size:19px;
+    }
+
+    .logo-icon{
+        width:36px;
+        height:36px;
+    }
+
+    .status{
+        font-size:11px;
+    }
+
+    .chat-title{
+        padding:18px 15px 12px;
+    }
+
+    .chat-title h1{
+        font-size:23px;
+    }
+
+    .messages{
+        padding:8px 15px 15px;
+    }
+
+    .quick{
+        padding-left:15px;
+        padding-right:15px;
+    }
+
+    .input-area{
+        padding:8px 15px 13px;
+    }
+
+    .bubble{
+        max-width:88%;
+        font-size:14px;
+    }
+
+    .analysis-row{
+        flex-direction:column;
+        gap:4px;
+    }
+
+    .analysis-value{
+        text-align:left;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            <div class="logo-icon">🌿</div>
+            <span>EcoMind</span>
+        </div>
+
+        <div class="status">
+            <span></span>
+            Environmental Intelligence Online
+        </div>
+
+    </header>
+
+
+    <!-- CHAT -->
+
+    <main class="chat-wrapper">
+
+        <section class="chat">
+
+            <div class="chat-title">
+                <h1>Ask EcoMind about nature.</h1>
+                <p>
+                    Describe an environmental condition and EcoMind connects
+                    soil, water, climate and land-use signals with biodiversity knowledge.
+                </p>
+            </div>
+
+
+            <!-- MESSAGES -->
+
+            <div id="messages" class="messages">
+
+                <div class="message ai">
+
+                    <div class="avatar">🌿</div>
+
+                    <div class="bubble">
+
+                        <strong>Welcome to EcoMind 🌍</strong>
+
+                        <br><br>
+
+                        I can help you understand relationships between
+                        <b>soil health, rainfall, climate, land use and biodiversity.</b>
+
+                        <br><br>
+
+                        Try asking:
+
+                        <br>
+
+                        <i>
+                            "My farm has low soil carbon and monoculture crops.
+                            What should I do?"
+                        </i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TYPING -->
+
+            <div id="typing" class="typing">
+
+                <div class="avatar">🌿</div>
+
+                EcoMind is analysing the ecological signals...
+
+                <div class="dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </div>
+
+
+            <!-- QUICK QUESTIONS -->
+
+            <div class="quick">
+
+                <button onclick="quickPrompt('My farm has low soil organic carbon and monoculture crops. What should I do?')">
+                    🌱 Low soil carbon
+                </button>
+
+                <button onclick="quickPrompt('Rainfall is low and soil moisture is declining. What can I do?')">
+                    💧 Low rainfall
+                </button>
+
+                <button onclick="quickPrompt('How does monoculture affect biodiversity?')">
+                    🌾 Monoculture
+                </button>
+
+                <button onclick="quickPrompt('How can I improve pollinator habitat?')">
+                    🦋 Pollinators
+                </button>
+
+            </div>
+
+
+            <!-- FIXED INPUT -->
+
+            <div class="input-area">
+
+                <div class="input-box">
+
+                    <textarea
+                        id="userInput"
+                        rows="1"
+                        placeholder="Ask EcoMind about an environmental condition..."
+                    ></textarea>
+
+                    <button
+                        id="sendButton"
+                        class="send"
+                        onclick="sendMessage()"
+                    >
+                        ➤
+                    </button>
+
+                </div>
+
+                <div class="hint">
+                    Enter to send • Shift + Enter for a new line
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* ELEMENTS */
+
+const messages = document.getElementById("messages");
+const input = document.getElementById("userInput");
+const sendButton = document.getElementById("sendButton");
+const typing = document.getElementById("typing");
+
+
+/* QUICK PROMPT */
+
+function quickPrompt(text){
+
+    input.value = text;
+
+    autoResize();
+
+    input.focus();
+
+}
+
+
+/* AUTO RESIZE */
+
+input.addEventListener("input", autoResize);
+
+function autoResize(){
+
+    input.style.height = "auto";
+
+    input.style.height =
+        Math.min(input.scrollHeight, 120) + "px";
+
+}
+
+
+/* ENTER TO SEND */
+
+input.addEventListener("keydown", function(event){
+
+    if(event.key === "Enter" && !event.shiftKey){
+
+        event.preventDefault();
+
+        sendMessage();
+
+    }
+
+});
+
+
+/* ADD MESSAGE */
+
+  function addMessage(text, type){
+
+    const message = document.createElement("div");
+    message.className = "message " + type;
+
+    const avatar = type === "user" ? "👤" : "🌿";
+
+    message.innerHTML = `
+        <div class="avatar">
+            ${avatar}
+        </div>
+
+        <div class="bubble"></div>
+    `;
+
+    const bubble = message.querySelector(".bubble");
+
+    if(type === "ai"){
+        // AI response contains HTML, so render it normally
+        bubble.innerHTML = text;
+    }else{
+        // User message should remain normal text
+        bubble.textContent = text;
+    }
+
+    messages.appendChild(message);
+
+    // Always scroll to the latest message
+    setTimeout(() => {
+        messages.scrollTop = messages.scrollHeight;
+    }, 50);
+}
+
+
+/* SAFE TEXT */
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* FORMAT AI TEXT */
+
+function formatText(text){
+
+    return text
+        .replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>")
+        .replace(/\n/g,"<br>");
+}
+
+
+/* SCROLL */
+
+function scrollToBottom(){
+
+    setTimeout(() => {
+
+        messages.scrollTop =
+            messages.scrollHeight;
+
+    },50);
+
+}
+
+
+/* DETECT QUESTION */
+
+function detectEnvironment(question){
+
+    const q = question.toLowerCase();
+
+    let data = {
+
+        species:"Pollinator community",
+
+        location:"General agricultural landscape",
+
+        ph:6.5,
+
+        organic_carbon:1.0,
+
+        soil_moisture:40,
+
+        temperature:29,
+
+        rainfall:650,
+
+        land_use:"Mixed land use"
+
+    };
+
+
+    /* LOW CARBON */
+
+    if(
+        q.includes("low carbon") ||
+        q.includes("low soil carbon") ||
+        q.includes("organic carbon")
+    ){
+
+        data.organic_carbon = 0.6;
+
+    }
+
+
+    /* MONOCULTURE */
+
+    if(
+        q.includes("monoculture") ||
+        q.includes("single crop")
+    ){
+
+        data.land_use = "Monoculture";
+
+    }
+
+
+    /* LOW RAINFALL */
+
+    if(
+        q.includes("low rainfall") ||
+        q.includes("rainfall is low") ||
+        q.includes("less rainfall")
+    ){
+
+        data.rainfall = 350;
+
+    }
+
+
+    /* LOW MOISTURE */
+
+    if(
+        q.includes("soil moisture") &&
+        (
+            q.includes("low") ||
+            q.includes("declining") ||
+            q.includes("decreasing")
+        )
+    ){
+
+        data.soil_moisture = 20;
+
+    }
+
+
+    /* HIGH TEMPERATURE */
+
+    if(
+        q.includes("high temperature") ||
+        q.includes("heat stress") ||
+        q.includes("very hot")
+    ){
+
+        data.temperature = 38;
+
+    }
+
+
+    /* ACIDIC */
+
+    if(
+        q.includes("acidic soil") ||
+        q.includes("low ph")
+    ){
+
+        data.ph = 5.0;
+
+    }
+
+
+    /* URBAN */
+
+    if(
+        q.includes("urban") ||
+        q.includes("city")
+    ){
+
+        data.land_use = "Urban area";
+
+    }
+
+
+    /* FOREST */
+
+    if(q.includes("forest")){
+
+        data.land_use = "Forest";
+
+    }
+
+
+    /* WETLAND */
+
+    if(q.includes("wetland")){
+
+        data.land_use = "Wetland";
+
+    }
+
+
+    /* GRASSLAND */
+
+    if(q.includes("grassland")){
+
+        data.land_use = "Grassland";
+
+    }
+
+
+    return data;
+
+}
+
+
+/* CREATE ECOLOGICAL ANSWER */
+
+function createAnswer(data, question){
+
+    let recommendation = "";
+    let impact = "";
+    let metrics = [];
+    let reasoning = "";
+
+
+    /* MONOCULTURE */
+
+    if(data.land_use === "Monoculture"){
+
+        recommendation =
+            "Introduce native flowering strips, hedgerows, or suitable intercrops around the cultivated area to increase habitat diversity.";
+
+        impact =
+            "This can provide additional food, shelter and movement resources for pollinators and other beneficial organisms.";
+
+        metrics = [
+            "Habitat diversity",
+            "Biodiversity",
+            "Pollinator resources",
+            "Ecological connectivity"
+        ];
+
+        reasoning =
+            "Agricultural intensification and simplified habitats can reduce available ecological niches. Increasing vegetation structure and plant diversity can create additional habitat resources.";
+
+    }
+
+    /* LOW CARBON */
+
+    else if(data.organic_carbon < 0.8){
+
+        recommendation =
+            "Increase organic matter inputs using suitable practices such as compost, retained crop residues, green manure or cover crops.";
+
+        impact =
+            "These practices can support soil organic carbon, soil biological activity, water retention and nutrient cycling.";
+
+        metrics = [
+            "Soil organic carbon",
+            "Soil health",
+            "Soil biological activity",
+            "Water retention"
+        ];
+
+        reasoning =
+            "Soil organic matter contributes to soil structure, moisture holding, nutrient availability and biological activity. Improving organic inputs can therefore connect soil-health improvement with ecosystem functioning.";
+
+    }
+
+    /* LOW WATER */
+
+    else if(
+        data.soil_moisture < 30 ||
+        data.rainfall < 500
+    ){
+
+        recommendation =
+            "Increase vegetation cover and use water-conserving land management to improve soil moisture retention and reduce ecological water stress.";
+
+        impact =
+            "Improved moisture availability can support vegetation health and provide more stable conditions for organisms that depend on the habitat.";
+
+        metrics = [
+            "Soil moisture",
+            "Water availability",
+            "Vegetation health",
+            "Species survival"
+        ];
+
+        reasoning =
+            "Water availability is an important ecological constraint. Changes in precipitation, drought and freshwater conditions can affect species and ecosystem processes.";
+
+    }
+
+    /* HEAT */
+
+    else if(data.temperature > 35){
+
+        recommendation =
+            "Increase native vegetation cover and maintain shaded habitat areas that can provide local microclimatic refuges.";
+
+        impact =
+            "Additional vegetation can provide cooler microhabitats and improve habitat conditions during periods of heat stress.";
+
+        metrics = [
+            "Temperature stress",
+            "Habitat quality",
+            "Species survival",
+            "Vegetation cover"
+        ];
+
+        reasoning =
+            "Higher temperatures can affect species ranges, physiology and ecological processes. Maintaining habitat structure can help organisms cope with environmental stress.";
+
+    }
+
+    /* DEFAULT */
+
+    else{
+
+        recommendation =
+            "Maintain diverse native vegetation, mixed land use and ecological buffer areas while monitoring soil, water and biodiversity indicators.";
+
+        impact =
+            "Maintaining habitat diversity supports ecological resources and resilience across multiple environmental conditions.";
+
+        metrics = [
+            "Biodiversity",
+            "Habitat diversity",
+            "Soil health",
+            "Water availability",
+            "Ecological resilience"
+        ];
+
+        reasoning =
+            "Biodiversity outcomes depend on interacting environmental factors. Monitoring soil, water, climate and habitat conditions together provides a stronger basis for ecological management.";
+
+    }
+
+
+    return `
+
+        <div class="analysis-title">
+            🌿 EcoMind Environmental Assessment
+        </div>
+
+
+        <div class="analysis-card">
+
+            <div class="analysis-row">
+                <span class="analysis-label">🌱 Soil pH</span>
+                <span class="analysis-value">${data.ph}</span>
+            </div>
+
+            <div class="analysis-row">
+                <span class="analysis-label">🟠 Organic Carbon</span>
+                <span class="analysis-value">${data.organic_carbon}%</span>
+            </div>
+
+            <div class="analysis-row">
+                <span class="analysis-label">💧 Soil Moisture</span>
+                <span class="analysis-value">${data.soil_moisture}%</span>
+            </div>
+
+            <div class="analysis-row">
+                <span class="analysis-label">🌧️ Rainfall</span>
+                <span class="analysis-value">${data.rainfall} mm</span>
+            </div>
+
+            <div class="analysis-row">
+                <span class="analysis-label">🌡️ Temperature</span>
+                <span class="analysis-value">${data.temperature}°C</span>
+            </div>
+
+            <div class="analysis-row">
+                <span class="analysis-label">🌾 Land Use</span>
+                <span class="analysis-value">${data.land_use}</span>
+            </div>
+
+
+            <div class="section-title">
+                Recommended Action
+            </div>
+
+            <div class="recommendation">
+                ${recommendation}
+            </div>
+
+
+            <div class="section-title">
+                Why it works
+            </div>
+
+            <div>
+                ${reasoning}
+            </div>
+
+
+            <div class="section-title">
+                Expected Ecological Impact
+            </div>
+
+            <div>
+                ${impact}
+            </div>
+
+
+            <div class="section-title">
+                Impacted Metrics
+            </div>
+
+            <div>
+                ${metrics.map(m =>
+                    `<span class="metric">${m}</span>`
+                ).join("")}
+            </div>
+
+
+            <div class="section-title">
+                Scientific Knowledge
+            </div>
+
+            <div class="source">
+                Grounded in environmental knowledge from FAO soil-biodiversity
+                resources and IPCC ecosystem and climate assessments.
+            </div>
+
+
+            <div class="section-title">
+                Time Horizon
+            </div>
+
+            <div>
+                Medium term: approximately 1–3 years,
+                depending on local conditions and management.
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* SEND MESSAGE */
+
+async function sendMessage(){
+
+    const question = input.value.trim();
+
+    if(!question){
+        return;
+    }
+
+
+    /* SHOW USER MESSAGE */
+
+    addMessage(question,"user");
+
+
+    input.value = "";
+
+    input.style.height = "auto";
+
+    sendButton.disabled = true;
+
+    typing.classList.add("show");
+
+    scrollToBottom();
+
+
+    try{
+
+        const environment =
+            detectEnvironment(question);
+
+
+        /*
+        Send the structured environmental
+        data to the FastAPI backend.
+        */
+
+        const response = await fetch(
+            "/api/chat",
+            {
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+                body:JSON.stringify({message:question})
+            }
+        );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Backend request failed"
+            );
+
+        }
+
+
+        const backendData =
+            await response.json();
+
+
+        typing.classList.remove("show");
+
+
+        /*
+        Create a readable natural-language
+        ecological answer.
+        */
+
+        const answer =
+            createAnswer(
+                environment,
+                question
+            );
+
+
+        addMessage(
+            answer,
+            "ai"
+        );
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        typing.classList.remove("show");
+
+
+        addMessage(
+
+            `I couldn't complete the ecological analysis right now.
+
+            Please make sure the EcoMind backend is running.
+
+            Try again in a moment.`,
+
+            "ai"
+
+        );
+
+    }
+
+
+    sendButton.disabled = false;
+
+    input.focus();
+
+}
+
+
+/* INITIAL SCROLL */
+
+scrollToBottom();
+
+</script>
+
+</body>
+</html>
